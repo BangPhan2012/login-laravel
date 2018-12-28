@@ -15,13 +15,57 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
-Route::get('/home', '@HomeControllerindex')->name('home');
+Route::get('index',[
+     'as'=>'trang-chu',
+     'uses'=>'PageController@getIndex'
+]);
 
-Route::get('/user','HomeController@userindex');
+Route::get('index/manager',[
+    'as'=>'manager',
+    'uses'=>'PageController@getManager'
+]);
 
-Route::get('/show','HomeController@show');
+Route::get('index/Topnavigation',[
+    'as'=>'Topnavigation',
+    'uses'=>'PageController@getTopnavigation'
+]);
 
-Route::get('/datatables','HomeController@datatables');
+Route::get('index/login',[
+    'as'=>'login',
+    'uses'=>'PageController@getLogin'
+]);
+Route::post('index/login',[
+    'as'=>'login',
+    'uses'=>'AuthController@postLogin'
+]);
+
+
+
+
+Route::get('index/register',[
+    'as'=>'register',
+    'uses'=>'PageController@getRegister'
+]);
+
+Route::post('index/register',[
+    'as'=>'register',
+    'uses'=>'AuthController@postRegister'
+]);
+
+Route::post('index/manager/delete/{id}',[
+    'as'=>'deleteuser',
+    'uses'=>'PageController@deleteuser'
+]);
+
+
+Route::get('index/edit/{id}','PageController@edituser')->name('edituser');
+
+Route::post('index/edit/{id}','PageController@postedituser');
+
+Route::get('index/add','PageController@adduser')->name('adduser');
+
+Route::post('index/add','PageController@postadduser');
+
+
 
